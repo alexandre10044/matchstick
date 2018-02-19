@@ -1,0 +1,45 @@
+/*
+** EPITECH PROJECT, 2017
+** my_get.c
+** File description:
+**
+*/
+
+#include "matchstick.h"
+
+struct request *get_request(char **str)
+{
+	struct request *req = malloc(sizeof(struct request));
+
+	if (req == NULL)
+		return (NULL);
+	req->size = my_getnbr(str[1]);
+	req->limit = my_getnbr(str[2]);
+	req->content = malloc(sizeof(char *) * req->size);
+	req->exit = 0;
+	if (req->content == NULL)
+		return (NULL);
+	for (int i = 0; i < req->size; i++) {
+		req->content[i] = malloc(sizeof(char) *
+			(1 + (2 * (req->size))));
+		if (req->content[i] == NULL)
+			return (NULL);
+	}
+	return (req);
+}
+
+int my_getnbr(char *str)
+{
+	int val = 0;
+
+	while (*str) {
+		if (*str >= '0' && *str <= '9') {
+			val *= 10;
+			val += *str - '0';
+		}
+		else
+			return (-1);
+		str++;
+	}
+	return (val);
+}
