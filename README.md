@@ -10,12 +10,4 @@ The losing player is the one to take the last matchstick.
 
 Usage:
 
- ./matchstick 4 5
- 
- 
-#*********
-#*   |   *
-#*  |||  *
-#* ||||| *
-#*|||||||*
-#*********
+See example text file.
