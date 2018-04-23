@@ -11,9 +11,10 @@ The losing player is the one to take the last matchstick.
 Usage:
 
  ./matchstick 4 5
+ [alt text](https://github.com/alexandre10044/101Pong/blob/master/example.png
 *********
 *   |   *
 *  |||  *
 * ||||| *
 *|||||||*
-*********
+*********)
