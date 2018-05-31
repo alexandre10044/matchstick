@@ -2,7 +2,7 @@
 ## EPITECH PROJECT, 2017
 ## Makefile
 ## File description:
-##
+## 
 ##
 
 SRC	=	src/main.c \
@@ -15,22 +15,26 @@ SRC	=	src/main.c \
 		src/my_reader.c \
 		src/my_utils.c
 
-CFLAGS	=	-Wall -Wextra
+OBJ	=	$(SRC:.c=.o)
 
-INCLUDE =	-I include -o
+CFLAGS	+=	-Wall -Werror -Wextra \
+		-I include -O3
 
-LIB	=	-g -lm
+LDFLAGS	+=	-lm
 
 NAME	=	matchstick
 
-all:	$(NAME)
+all:		$(NAME)
 
-$(NAME):
-	gcc $(SRC) $(CFLAGS) $(INCLUDE) $(NAME) $(LIB)
+$(NAME):	$(OBJ)
+		gcc -o $(NAME) $(CFLAGS) $(OBJ) $(LDFLAGS)
 
-fclean:	clean
-	rm -f $(NAME)
+clean:
+		rm -f $(OBJ)
 
-re:	fclean all
+fclean:		clean
+		rm -f $(NAME)
 
-.PHONY:	all clean fclean re
+re:		fclean all
+
+.PHONY:		all clean fclean re

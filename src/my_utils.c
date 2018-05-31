@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2017
 ** my_utils.c
 ** File description:
-**
+** Utils
 */
 
 #include "matchstick.h"

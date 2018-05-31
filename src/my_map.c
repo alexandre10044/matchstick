@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2017
 ** my_map.c
 ** File description:
-**
+** Map file
 */
 
 #include "matchstick.h"

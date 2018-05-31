@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2017
 ** main.c
 ** File description:
-**
+** Main file
 */
 
 #include "matchstick.h"

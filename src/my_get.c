@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2017
 ** my_get.c
 ** File description:
-**
+** Get file
 */
 
 #include "matchstick.h"
@@ -42,4 +42,21 @@ int my_getnbr(char *str)
 		str++;
 	}
 	return (val);
+}
+
+int input_matches(struct request *req, int line)
+{
+	char *str;
+	int match;
+
+	my_put_str("Matches: ");
+	str = get_next_line(0);
+	if (str == NULL) {
+		req->exit = 0;
+		return (84);
+	}
+	match = my_getnbr(str);
+	if (handle_match_error(req, match) == 0)
+		return (input(req, 1));
+	return (remove_match(req, line, match));
 }

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2017
 ** my_engine.c
 ** File description:
-**
+** Engine file
 */
 
 #include "matchstick.h"
@@ -31,16 +31,15 @@ void process(struct request *req)
 
 int input(struct request *req, int line)
 {
-	int match = 0;
 	char *str;
 
 	if (line == 0)
 		my_put_str("Your turn:\n");
 	my_put_str("Line: ");
-	str = read_line();
+	str = get_next_line(0);
 	if (str == NULL) {
-		req->exit = 1;
-		return (0);
+		req->exit = 0;
+		return (84);
 	}
 	line = my_getnbr(str);
 	if (handle_line_error(line) == 0)
@@ -48,16 +47,7 @@ int input(struct request *req, int line)
 	line--;
 	if (entities_number_line(req, line) == -1)
 		return (input(req, 1));
-	my_put_str("Matches: ");
-	str = read_line();
-	if (str == NULL) {
-		req->exit = 1;
-		return (0);
-	}
-	match = my_getnbr(str);
-	if (handle_match_error(req, match) == 0)
-		return (input(req, 1));
-	return (remove_match(req, line, match));
+	return (input_matches(req, line));
 }
 
 int remove_match(struct request *req, int line, int match)
@@ -81,7 +71,7 @@ void my_remove(struct request *req, int match, int line)
 	int i = my_strlen(req->content[0]) - 1;
 
 	my_put_str(ply_remov);
-	my_put_nbr(match);
+	my_put_nbr(match, 1);
 	for (; i >= 0 && match != 0; i--) {
 		if (req->content[line][i] == '|') {
 			req->content[line][i] = ' ';
@@ -89,23 +79,23 @@ void my_remove(struct request *req, int match, int line)
 		}
 	}
 	my_put_str(ply_remov_end);
-	my_put_nbr(line + 1);
-	my_put_char('\n');
+	my_put_nbr(line + 1, 1);
+	my_put_char('\n', 1);
 }
 
 void display(struct request *req)
 {
 	for (int i = 0; i < my_strlen(req->content[0]) + 2; i++)
-		my_put_char('*');
-	my_put_char('\n');
+		my_put_char('*', 1);
+	my_put_char('\n', 1);
 	for (int i = 0; i < req->size; i++) {
-		my_put_char('*');
+		my_put_char('*', 1);
 		my_put_str(req->content[i]);
-		my_put_char('*');
-		my_put_char('\n');
+		my_put_char('*', 1);
+		my_put_char('\n', 1);
 	}
 	for (int i = 0; i < my_strlen(req->content[0]) + 2; i++)
-		my_put_char('*');
-	my_put_char('\n');
-	my_put_char('\n');
+		my_put_char('*', 1);
+	my_put_char('\n', 1);
+	my_put_char('\n', 1);
 }

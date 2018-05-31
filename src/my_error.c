@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2017
 ** my_error.c
 ** File description:
-**
+** Error handling
 */
 
 #include "matchstick.h"
@@ -22,7 +22,7 @@ int handle_match_error(struct request *req, int match)
 	}
 	if (match > req->limit) {
 		my_put_str(error_match);
-		my_put_nbr(req->limit);
+		my_put_nbr(req->limit, 1);
 		my_put_str(error_match_end);
 		return (0);
 	} else if (match == -1) {

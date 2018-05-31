@@ -2,16 +2,22 @@
 ** EPITECH PROJECT, 2017
 ** file.h
 ** File description:
-**
+** Main header
 */
 
-#ifndef matchstick_
-#define matchstick_
+#ifndef  READ_SIZE
+	#define  READ_SIZE (2048)
+#endif  /* !READ_SIZE  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <time.h>
+#ifndef matchstick_
+	#define matchstick_
+
+	#include <unistd.h>
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <string.h>
+	#include <fcntl.h>
+	#include <time.h>
 
 struct request {
 	char **content;
@@ -43,19 +49,21 @@ int handle_line_error(int line);
 // my_get.c
 struct request *get_request(char **str);
 int my_getnbr(char *str);
+int input_matches(struct request *req, int line);
 
 // my_map.c
 void fill_alums(struct request *req);
 
 // my_put.c
-void my_put_char(char c);
+void my_put_char(char c, int output);
 void my_put_str(const char *str);
-int my_put_nbr(int nb);
+int my_put_nbr(int nb, int output);
 
 // my_reader.c
-char *read_line(void);
-int my_getchar(void);
 char *my_realloc(char *src, int pos);
+int get_position(int fd, char *buff, char *content, int i);
+char *process_content(char *content, int i);
+char *get_next_line(int fd);
 
 // my_utils.c
 int my_strlen(const char *str);
